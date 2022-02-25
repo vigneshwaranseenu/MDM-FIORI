@@ -1,0 +1,180 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.mdm.zmissint.controller.Intervals"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ExcelGrid="ExcelGrid"
+    xmlns:core="sap.ui.core">
+    <Page id="idIntervalsPage" showHeader="true" title="{i18n>viewIntervals}" showFooter="true" showNavButton="false" class="intervalsPageClass">
+        <content>
+            <form:Form width="100%" editable="true" visible="true">
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                </form:layout>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>installation}" design="Bold" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="{oDeviceAndProfileDataModel>/deviceAndProfileData/0/installation}"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>device}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <HBox >
+                                        <ComboBox id="idDeviceDropdown" items="{path: 'oDeviceAndProfileDataModel>/deviceAndProfileData', sorter: { path: 'device' }}" selectionChange="onDeviceSelectionChange">
+                                            <core:Item key="{oDeviceAndProfileDataModel>device}" text="{oDeviceAndProfileDataModel>device}" />
+                                        </ComboBox>
+                                    </HBox>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>profile}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <HBox >
+                                        <MultiComboBox id="idProfileDropdown" items="{path: 'oProfileModel>/profileData', sorter: { path: 'profile' }}">
+                                            <core:Item key="{oProfileModel>profile}" text="{oProfileModel>profile}" />
+                                        </MultiComboBox>
+                                        <Button text="{i18n>go}" type="Emphasized" press="getIntervalData" class="sapUiSmallMarginBegin"/>
+                                    </HBox>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+            </form:Form>
+            <IconTabBar id="idIconTabBar" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" selectedKey="registerData" class="iconTabBarClass" select="onTabSelect">
+                <items>
+                    <IconTabFilter icon="sap-icon://notes" key="registerData" iconColor="Neutral" text="{i18n>registerData}" count="" design="Horizontal" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <content>
+                            <Table id="idRegisterDataTbl" width="auto" noDataText="No data" mode="MultiSelect" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{oRegisterDataTblModel>/registerDataTblData}">
+                                <headerToolbar>
+                                    <Toolbar>
+                                        <content>
+                                            <Label text="{i18n>registerData}" textAlign="Begin" design="Bold" visible="true" wrapping="false" class="tableTitle"/>
+                                            <ToolbarSpacer/>
+                                            <SearchField width="75%" class="sapUiSmallMargin" liveChange="handleRegisterDataTblSearch" placeholder="{i18n>searchfieldText2}"/>
+                                            <Button id="idRegisterDataTblSort" text="" type="Default" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onRegisterDataTblSorting"/>
+                                            <Button id="idRegisterDataTblClear" text="{i18n>clear}" type="Emphasized" icon="sap-icon://multiselect-none" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onRegisterDataTblClear"/>
+                                        </content>
+                                    </Toolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                        <Text text="{i18n>registerNumber}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                        <Text text="{i18n>mrDate}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                        <Text text="{i18n>mrTime}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                        <Text text="{i18n>readReason}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                        <Text text="{i18n>mrRecorded}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                        <Text text="{i18n>meterMultiplier}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                        <Text text="{i18n>unitOfMeasurement}"/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Active">
+                                        <cells>
+                                            <Text text="{oRegisterDataTblModel>regNo}"/>
+                                            <Text text="{path: 'oRegisterDataTblModel>mrDate', formatter: '.getDateInFormat'}"/>
+                                            <Text text="{path: 'oRegisterDataTblModel>mrTime', formatter: '.getTimeInFormat'}"/>
+                                            <Text text="{oRegisterDataTblModel>readReason}"/>
+                                            <Text text="{oRegisterDataTblModel>readValue}"/>
+                                            <Text text="{oRegisterDataTblModel>meterMultiplier}"/>
+                                            <Text text="{oRegisterDataTblModel>uom}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </content>
+                    </IconTabFilter>
+                    <IconTabSeparator icon="" iconDensityAware="false"/>
+                    <IconTabFilter id="idAllIntTab" key="allInterval" icon="sap-icon://multiselect-all" iconColor="Positive" text="{i18n>allIntervals}" count="" design="Horizontal" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <content>
+                            <Toolbar class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" design="Transparent" width="73%">
+                                <content>
+                                    <Label text="{i18n>allIntervals}" textAlign="Begin" design="Bold" visible="true" wrapping="false" class="tableTitle"/>
+                                    <ToolbarSpacer/>
+                                    <Button id="idAllIntervalTabSelectAllBtn" text="{i18n>selectAll}" type="Accept" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onPressSelectAllBtn"/>
+                                    <Button id="idAllIntervalTabClearBtn" text="{i18n>clear}" type="Accept" icon="sap-icon://multiselect-none" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onPressAllIntTabClearBtn"/>
+                                    <Button id="idAllIntervalTabRemoveBtn" text="{i18n>removeStatus}" type="Accept" press="onPressAllIntTabBtn('REMOVE')"/>
+                                    <Button id="idAllIntervalTabReevaluateBtn" text="{i18n>reEvaluate}" type="Accept" press="onPressAllIntTabBtn('REEVALUATE')"/>
+                                    <Button id="idAllIntervalTabSaveBtn" text="{i18n>save}" type="Accept" press="onPressAllIntTabBtn('SAVE')"/>
+                                    <Button id="idAllIntervalTabResentBtn" text="{i18n>resentMissingIntervalRead}" type="Accept" press="onPressAllIntTabBtn('RESENT')"/>
+                                    <Button id="idAllIntervalTabGraphBtn" type="Accept" icon="sap-icon://line-chart" iconFirst="true" press="onPressChartBtn"/>
+                                </content>
+                            </Toolbar>
+                            <core:Fragment id="allIntervalFrag" fragmentName='com.mdm.zmissint.view.fragments.AllInterval' type='JS'/>
+                        </content>
+                    </IconTabFilter>
+                    <IconTabSeparator icon="" iconDensityAware="false"/>
+                    <IconTabFilter key="missingInterval" id="idMissingIntTab" icon="sap-icon://error" iconColor="Negative" text="{i18n>missingIntervals}" count="" design="Horizontal" showAll="false" textDirection="Inherit" enabled="true" visible="true" tooltip="{i18n>missingIntervals}" iconDensityAware="false">
+                        <content>
+                            <Toolbar class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" design="Transparent" width="73%">
+                                <content>
+                                    <Label text="{i18n>missingIntervals}" textAlign="Begin" design="Bold" visible="true" wrapping="false" class="tableTitle"/>
+                                    <ToolbarSpacer/>
+                                    <Button id="idMissIntervalTabSelectAllBtn" text="{i18n>selectAll}" type="Accept" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onPressSelectAllBtn"/>
+                                    <Button id="idMissIntervalTabRemoveBtn" text="{i18n>removeStatus}" type="Accept" press="onPressMissIntTabBtn('REMOVE')"/>
+                                    <Button id="idMissIntervalTabReevaluateBtn" text="{i18n>reEvaluate}" type="Accept" press="onPressMissIntTabBtn('REEVALUATE')"/>
+                                    <Button id="idMissIntervalTabSaveBtn" text="{i18n>save}" type="Accept" press="onPressMissIntTabBtn('SAVE')"/>
+                                    <Button id="idMissIntervalTabResentBtn" text="{i18n>resentMissingIntervalRead}" type="Accept" press="onPressMissIntTabBtn('RESENT')"/>
+                                </content>
+                            </Toolbar>
+                            <core:Fragment id="intervalFrag" fragmentName='com.mdm.zmissint.view.fragments.MissingIntervals' type='JS'/>
+                        </content>
+                    </IconTabFilter>
+                    <IconTabSeparator icon="" iconDensityAware="false"/>
+                    <IconTabFilter id="idInvalidTab" key="validationFail" icon="sap-icon://hint" iconColor="Default" text="{i18n>validationFail}" count="" design="Horizontal" showAll="false" textDirection="Inherit" enabled="true" visible="true" tooltip="{i18n>validationFail}" iconDensityAware="false">
+                        <content>
+                            <Toolbar class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" design="Transparent" width="73%">
+                                <content>
+                                    <Label text="{i18n>validationFail}" textAlign="Begin" design="Bold" visible="true" wrapping="false" class="tableTitle"/>
+                                    <ToolbarSpacer/>
+                                    <Button id="idInvalidTabSelectAllBtn" text="{i18n>selectAll}" type="Accept" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onPressSelectAllBtn"/>
+                                    <Button id="idInvalidTabRemoveBtn" text="{i18n>removeStatus}" type="Accept" press="onPressInvalidTabBtn('REMOVE')"/>
+                                    <Button id="idInvalidTabReevaluateBtn" text="{i18n>reEvaluate}" type="Accept" press="onPressInvalidTabBtn('REEVALUATE')"/>
+                                    <Button id="idInvalidTabSaveBtn" text="{i18n>save}" type="Accept" press="onPressInvalidTabBtn('SAVE')"/>
+                                    <Button id="idInvalidTabResentBtn" text="{i18n>resentMissingIntervalRead}" type="Accept" press="onPressInvalidTabBtn('RESENT')"/>
+                                </content>
+                            </Toolbar>
+                            <core:Fragment id="validationFailFrag" fragmentName='com.mdm.zmissint.view.fragments.ValidationFail' type='JS'/>
+                        </content>
+                    </IconTabFilter>
+                </items>
+                <content/>
+            </IconTabBar>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true" class="footerToolbarClass">
+                <content>
+                    <Button id="idCheckConsumptionBtn" text="{i18n>checkConsumption}" type="Accept" width="auto" enabled="true" visible="true" press="onCheckConsumptionPress" class="sapUiSmallMarginBegin"/>
+                    <Input id="idCheckConsumptionInput" value="" class="sapUiSmallMarginBegin" width="20%"/>
+                    <Label id="idIntervalConsumptionLbl" text="{i18n>intervalConsumption}" class="sapUiSmallMarginBegin labelClass"/>
+                    <Input id="idIntConsumptionInput" value="" class="sapUiTinyMarginBegin" width="20%"/>
+                    <ToolbarSpacer/>
+                    <Button text="{i18n>toReportsScreen}" type="Accept" width="auto" enabled="true" visible="true" press="_onBackButtonPress"/>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>

@@ -1,0 +1,74 @@
+.wtHider{
+    position: unset !important;
+    }
+    .sapMPage>section.sapMPageEnableScrolling .sapMPage>section {
+        overflow: visible !important;
+    }
+.formLabelBold .sapUiFormResGrid > .sapUiFormResGridCont > .sapUiFormElementLbl > .sapMLabel {
+    font-weight: bold !important;
+}
+.tableTitle {
+    font-size: 1rem;
+}
+
+/*Table header Color*/
+.sapMTableTH {
+    background: #286eb4 !important;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: middle;
+}
+
+/*table header*/
+.sapMColumnHeaderContent{
+    color: white !important;
+    font-size: 0.8rem !important;
+    font-weight: bold !important;
+}
+
+.inputFormClass .sapUiFormTitle {
+    background: #286eb4 !important;
+    color: white !important;
+    font-size: 1rem !important;
+    text-align: center;
+}
+.inputFormClass .sapUiRespGrid {
+    background-color: #ffffff !important;
+}
+.footerToolbarClass {
+    background: #286eb4 !important;
+}
+.inputPageClass {
+    background-color: #ffffff !important;
+}
+.reportsPageClass {
+    background-color: #ffffff !important;
+}
+.intervalsPageClass {
+    background-color: #ffffff !important;
+}
+.reportsPageClass .sapMBar {
+    background: #286eb4 !important;
+}
+.reportsPageClass .sapMBarMiddle > .sapMBarContainer > .sapMTitle {
+    color: white !important;
+    font-size: 1rem !important;
+    text-align: center;
+}
+.reportsTableClass {
+    border: 1px solid black;
+}
+.intervalsPageClass .sapMBar {
+    background: #286eb4 !important;
+}
+.intervalsPageClass .sapMBarMiddle > .sapMBarContainer > .sapMTitle {
+    color: white !important;
+    font-size: 1rem !important;
+    text-align: center;
+}
+.iconTabBarClass .sapMITBContent {
+    background-color: #ffffff !important;
+}
+.labelClass {
+    color: white !important;
+    font-weight: bold !important;
+}

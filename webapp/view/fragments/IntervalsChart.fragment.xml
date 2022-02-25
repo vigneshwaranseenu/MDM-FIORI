@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:u="sap.suite.ui.commons">
+    <Dialog id="idChartDialogue" title="Intervals Chart" contentHeight="100%" contentWidth="100%">
+
+        <u:ChartContainer id="chartContainer" showFullScreen="true" showPersonalization="false" autoAdjustHeight="true" enableScroll="true">
+            <u:content>
+                <u:ChartContainerContent icon="sap-icon://line-chart" title="{i18n>lineChart}">
+                    <u:content>
+
+                        <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizProperties="{ title: {text : 'Intervals Chart', visible : true}}" height="400px" width="100%" vizType='line'>
+                            <viz:dataset>
+                                <viz.data:FlattenedDataset data="{oAllIntervalModel>/allIntervalData}">
+                                    <viz.data:dimensions>
+                                        <viz.data:DimensionDefinition name="Time" value="{oAllIntervalModel>fromTime}"/>
+                                        <viz.data:DimensionDefinition name="Profile" value="{oAllIntervalModel>profile}" />
+                                    </viz.data:dimensions>
+                                    <viz.data:measures>
+                                        <viz.data:MeasureDefinition name="Interval Read" value="{oAllIntervalModel>read}" />
+                                    </viz.data:measures>
+                                </viz.data:FlattenedDataset>
+                            </viz:dataset>
+
+                            <viz:feeds>
+                                <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Interval Read"/>
+                                <viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="Time"/>
+                                <viz.feeds:FeedItem id='categoryAxisFeed2' uid="color" type="Dimension" values="Profile"/>
+                            </viz:feeds>
+                        </viz:VizFrame>
+
+
+                    </u:content>
+                </u:ChartContainerContent>
+            </u:content>
+        </u:ChartContainer>
+
+        <beginButton>
+            <Button text="{i18n>close}" press="onCloseChartDialog"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

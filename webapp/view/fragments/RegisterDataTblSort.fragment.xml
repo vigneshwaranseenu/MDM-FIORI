@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    <ViewSettingsDialog sortDescending="true" confirm="onRegisterDataTblSortConfirm">
+        <sortItems>
+            <ViewSettingsItem text="{i18n>registerNumber}" key="regNo"/>
+            <ViewSettingsItem text="{i18n>mrDate}" key="mrDate"/>
+            <ViewSettingsItem text="{i18n>readReason}" key="readReason"/>
+            <ViewSettingsItem text="{i18n>mrRecorded}" key="readValue"/>
+            <ViewSettingsItem text="{i18n>unitOfMeasurement}" key="uom"/>
+        </sortItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

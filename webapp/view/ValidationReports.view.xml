@@ -1,0 +1,65 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.mdm.zmissint.controller.ValidationReports"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="idReportsPage" showHeader="true" title="{i18n>viewValidationReports}" showFooter="true" showNavButton="false" class="reportsPageClass">
+        <content>
+            <Text text="" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+            <Table id="idValidationReportsTable" width="auto" noDataText="{i18n>noDataTxt}" mode="SingleSelectMaster" items="{oValidationReportsTableModel>/validationReportsTableData}" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin reportsTableClass" selectionChange="onRowSelect">
+                <headerToolbar>
+                    <Toolbar>
+                        <content>
+                            <Label text="{i18n>validationReports}" textAlign="Begin" design="Bold" visible="true" wrapping="false" class="tableTitle"/>
+                            <ToolbarSpacer/>
+                            <SearchField width="80%" class="sapUiSmallMargin" liveChange="handleValidationReportsTableSearch" placeholder="{i18n>searchfieldText1}"/>
+                            <Button id="idValidationReportsTableSort" text="" type="Default" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onValidReportsTableSorting"/>
+                        </content>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Text text="{i18n>premiseCML}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Text text="{i18n>installation}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Text text="{i18n>billCycle}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Text text="{i18n>customerName}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Text text="{i18n>groupLabel}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Text text="{i18n>period}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Text text="{i18n>remark}"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{oValidationReportsTableModel>premise}"/>
+                            <Text text="{oValidationReportsTableModel>installation}"/>
+                            <Text text="{oValidationReportsTableModel>cycle}"/>
+                            <Text text="{oValidationReportsTableModel>customerName}"/>
+                            <Text text="{oValidationReportsTableModel>groupLabel}"/>
+                            <Text text="{oValidationReportsTableModel>billingPeriod}"/>
+                            <Text text="{oValidationReportsTableModel>remark}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true" class="footerToolbarClass">
+                <content>
+                    <ToolbarSpacer/>
+                    <Button text="{i18n>toInputScreen}" type="Accept" width="auto" enabled="true" visible="true" press="onBackButtonPress"/>
+                </content>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

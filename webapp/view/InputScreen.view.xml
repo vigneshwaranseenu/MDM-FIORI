@@ -1,0 +1,97 @@
+<mvc:View controllerName="com.mdm.zmissint.controller.InputScreen" displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="idInputPage" showHeader="false" showFooter="true" showNavButton="false" class="inputPageClass">
+        <content>
+            <form:Form id="idInputForm" width="100%" editable="true" visible="true" class="formLabelBold inputFormClass">
+                <form:title>
+                    <core:Title text="{i18n>inputScreen}" level="H5"/>
+                </form:title>
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="{i18n>billingcycle}">
+                                <form:fields>
+                                    <Input id="idBillingCycleInput">
+                                        <layoutData>
+                                            <l:GridData span="XL1 L3 M4 S4" />
+                                        </layoutData>
+                                    </Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>date}">
+                                <form:fields>
+                                    <Input type="Date" id="idFromDateInput">
+                                        <layoutData>
+                                            <l:GridData span="XL1 L3 M4 S4" />
+                                        </layoutData>
+                                    </Input>
+                                    <Label text="{i18n>to}" design="Bold" class="sapUiMediumMarginBegin sapUiTinyMarginTop">
+                                        <layoutData>
+                                            <l:GridData span="XL1 L1 M1 S1" />
+                                        </layoutData>
+                                    </Label>
+                                    <Input type="Date" id="idToDateInput">
+                                        <layoutData>
+                                            <l:GridData span="XL1 L3 M4 S4" />
+                                        </layoutData>
+                                    </Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>contractAccount}">
+                                <form:fields>
+                                    <Input id="idContractAccountInput" showValueHelp="false">
+                                        <layoutData>
+                                            <l:GridData span="XL1 L3 M4 S4" />
+                                        </layoutData>
+                                    </Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>installation}">
+                                <form:fields>
+                                    <Input id="idInstallationInput" showValueHelp="false">
+                                        <layoutData>
+                                            <l:GridData span="XL1 L3 M4 S4" />
+                                        </layoutData>
+                                    </Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>device}">
+                                <form:fields>
+                                    <Input id="idDeviceInput" showValueHelp="false">
+                                        <layoutData>
+                                            <l:GridData span="XL1 L3 M4 S4" />
+                                        </layoutData>
+                                    </Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>profileNumber}">
+                                <form:fields>
+                                    <Input id="idProfileNumberInput" showValueHelp="false">
+                                        <layoutData>
+                                            <l:GridData span="XL1 L3 M4 S4" />
+                                        </layoutData>
+                                    </Input>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true" class="footerToolbarClass">
+                <content>
+                    <ToolbarSpacer/>
+                    <Button text="{i18n>checkStatus}" type="Accept" icon="sap-icon://arrow-right" iconFirst="false" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onCheckStatusBtnPress"/>
+                </content>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,178 @@
+{
+    "_version": "1.26.0",
+    "sap.app": {
+        "id": "com.mdm.zmissint",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "MISSING_INTERVAL_ODATA_DATA_SOURCE": {
+                "uri": "/sap/opu/odata/sap/ZMDM_MONITORING_PROFILE_SRV",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "com-mdm-zmissint-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "ZSO_MIS_INTER",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.82.0",
+            "libs": {
+                "sap.ui.core": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.mdm.zmissint.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "MISSING_INTERVAL_ODATA_DATA_SOURCE",
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "groupId": "$direct"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/jquery.handsontable.full.css"
+                },
+                {
+                    "uri": "css/handsontable.full.css"
+                },
+                {
+                    "uri": "css/style.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "js/handsontable.full.js"
+                },
+                {
+                    "uri": "js/jquery.handsontable.full.js"
+                },
+                {
+                    "uri": "js/excelgrid.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.mdm.zmissint.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteInputScreen",
+                    "pattern": "",
+                    "target": [
+                        "TargetInputScreen"
+                    ]
+                },
+                {
+                    "name": "RouteValidationReports",
+                    "pattern": "RouteValidationReports",
+                    "target": [
+                        "TargetValidationReports"
+                    ]
+                },
+                {
+                    "name": "RouteIntervals",
+                    "pattern": "RouteIntervals",
+                    "target": [
+                        "TargetIntervals"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetInputScreen": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "InputScreen",
+                    "viewName": "InputScreen"
+                },
+                "TargetValidationReports": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "ValidationReports",
+                    "viewName": "ValidationReports"
+                },
+                "TargetIntervals": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Intervals",
+                    "viewName": "Intervals"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "com.mdm.zmissint.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "com-mdm-zmissint"
+    }
+}

@@ -1,0 +1,7 @@
+<mvc:View controllerName="com.mdm.zmissint.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <App id="app">
+    </App>
+</mvc:View>

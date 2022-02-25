@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    <ViewSettingsDialog sortDescending="true" confirm="onValidReportsTableSortConfirm">
+        <sortItems>
+            <ViewSettingsItem text="{i18n>premiseCML}" key="premise"/>
+            <ViewSettingsItem text="{i18n>installation}" key="installation"/>
+            <ViewSettingsItem text="{i18n>billCycle}" key="cycle"/>
+            <ViewSettingsItem text="{i18n>customerName}" key="customerName"/>
+            <ViewSettingsItem text="{i18n>groupLabel}" key="groupLabel"/>
+            <ViewSettingsItem text="{i18n>remark}" key="remark"/>
+        </sortItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>
